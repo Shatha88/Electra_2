@@ -26,33 +26,7 @@ class AddStation extends StatelessWidget {
               ),
               kVSpace64,
               addStationContainer(),
-              kVSpace64,
-              Center(
-                child: Container(
-                  height: 44,
-                  width: 163,
-                  decoration: BoxDecoration(
-                    color: kcolorsgerrn,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.push(view: RequestStatus());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kcolorsgerrn,
-                    ),
-                    child: Text(
-                      "Add Station",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              )
+
             ],
           ),
         ),

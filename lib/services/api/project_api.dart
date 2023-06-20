@@ -2,7 +2,7 @@ class ProjectApi
     with Api, AuthEndpoints, ConsumerEndpoints, ProviderEndpoints {}
 
 mixin Api {
-  String url = '0.0.0.0:8080';
+  String url = 'localhost:8080';
 }
 
 mixin AuthEndpoints {

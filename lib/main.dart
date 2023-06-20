@@ -25,6 +25,6 @@ class MainApp extends StatelessWidget {
             ? box.read('UserType').toString().contains('CONSUMER')
                 ? const ConHome()
                 : const Screens()
-            : const StartScreen());
+            : const Screens());
   }
 }
