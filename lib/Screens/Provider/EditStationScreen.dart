@@ -4,17 +4,21 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:electra/Screens/Provider/ProviderStationsScreen.dart';
 import 'package:electra/components/Provider/Componints/AddStationComponints/AppBar_AddStation.dart';
 import 'package:electra/components/Provider/Componints/AddStationComponints/textCustom.dart';
+import 'package:electra/components/Provider/Componints/EditStation/ElecatedButtonDeleteStation.dart';
 import 'package:electra/components/Provider/Componints/ElvatedButtonCustom.dart';
 import 'package:electra/constents/spaces.dart';
+import 'package:electra/services/api/provider_api.dart';
+import 'package:electra/services/extention/navigator/navigator_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditStation extends StatefulWidget {
-  const EditStation({super.key});
+  const EditStation({super.key, required this.id});
 
   @override
   State<EditStation> createState() => _EditStationState();
+  final int id;
 }
 
 class _EditStationState extends State<EditStation> {
@@ -45,13 +49,14 @@ class _EditStationState extends State<EditStation> {
                 icon: Icons.chevron_left,
                 page: ProviderStation(),
               ),
-              
+
               kVSpace8,
               // Image(
               //   height: 200,
               //   width: 200,
               //   image: AssetImage("assets/images/EDitstaion.jpg"),
               // ),
+              kVSpace64,
               Align(
                   alignment: Alignment.centerLeft,
                   child: textCustom(titel: "Update Station Image")),
@@ -160,6 +165,22 @@ class _EditStationState extends State<EditStation> {
                               kHSpace16,
                             ],
                           ),
+                        ),
+                      ),
+                      kVSpace8,
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: textCustom(titel: "Delete Station")),
+                      kVSpace8,
+                      Container(
+                        height: 70,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: ElecatedButtonDeleteStation(
+                          id: widget.id,
                         ),
                       ),
                       kVSpace32,

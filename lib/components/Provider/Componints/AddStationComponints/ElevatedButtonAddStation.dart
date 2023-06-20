@@ -1,4 +1,5 @@
 import 'package:electra/Screens/Provider/ProviderStationsScreen.dart';
+import 'package:electra/constents/colors_theme.dart';
 import 'package:electra/services/api/provider_api.dart';
 import 'package:electra/services/extention/navigator/navigator_ext.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +16,13 @@ class ElecatedButtonAddStation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
+    return SizedBox(
+      height: 50,
+      width: 150,
       child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kcolorsgerrn,
+        ),
         onPressed: () async {
           final Map body = {"rating": ratingvalue, "location": locationgvalue};
           final response = await Addstation(body: body);

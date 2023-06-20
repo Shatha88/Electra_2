@@ -44,7 +44,7 @@ class _addStationContainerState extends State<addStationContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: 500,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         color: kcolorsgrey,
@@ -103,19 +103,19 @@ class _addStationContainerState extends State<addStationContainer> {
                 ),
               ),
             ),
-            kVSpace16,
-            const Align(
-              alignment: Alignment.bottomLeft,
-              child: textCustom(
-                titel: "Bank Account : ",
-              ),
-            ),
-            kVSpace16,
-            const textfeldecustom(
-              
-              titel: "Bank Account",
-              iconData: Icons.attach_money_rounded,
-            ),
+            // kVSpace16,
+            // const Align(
+            //   alignment: Alignment.bottomLeft,
+            //   child: textCustom(
+            //     titel: "Bank Account : ",
+            //   ),
+            // ),
+            // kVSpace16,
+            // const textfeldecustom(
+
+            //   titel: "Bank Account",
+            //   iconData: Icons.attach_money_rounded,
+            // ),
             kVSpace16,
             const Align(
               alignment: Alignment.bottomLeft,
@@ -206,7 +206,10 @@ class _addStationContainerState extends State<addStationContainer> {
               ),
             ),
             kVSpace24,
-            ElecatedButtonAddStation(locationgvalue: locationMessage,ratingvalue: dropdownValue, )
+            ElecatedButtonAddStation(
+              locationgvalue: locationMessage,
+              ratingvalue: dropdownValue,
+            )
           ],
         ),
       ),
@@ -234,6 +237,4 @@ class _addStationContainerState extends State<addStationContainer> {
 
     return await Geolocator.getCurrentPosition();
   }
-
-  
 }

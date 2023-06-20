@@ -153,3 +153,29 @@ Future<Response> getStationID({required String id}) async {
     return Response("error", 111);
   }
 }
+
+//_________________ Delete Station _____________________________
+
+
+Future<Response> DeleteStation({required String id}) async {
+  try {
+    final box = GetStorage();
+    var url = Uri.http(ProjectApi().url, ProjectApi().deleteStation + id);
+    var response =
+        await http.delete(url, headers: {"authorization": box.read("token")});
+    if (response.statusCode == 401) {
+      box.remove("token");
+    }
+    return response;
+  } on HttpException catch (error) {
+    return Response(error.message, 111);
+  } on ArgumentError catch (error) {
+    return Response(error.message, 111);
+  } on ClientException catch (error) {
+    return Response(error.message, 111);
+  } on FlutterError catch (error) {
+    return Response("error", 111);
+  } catch (error) {
+    return Response("error", 111);
+  }
+}
