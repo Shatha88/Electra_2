@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:electra/components/Provider/Componints/AddStationComponints/ElevatedButtonAddStation.dart';
 import 'package:electra/components/Provider/Componints/AddStationComponints/textCustom.dart';
 import 'package:electra/components/Provider/Componints/AddStationComponints/textFeldCustom.dart';
 import 'package:electra/constents/colors_theme.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 
 class addStationContainer extends StatefulWidget {
   const addStationContainer({
@@ -24,9 +24,11 @@ class addStationContainer extends StatefulWidget {
 
 class _addStationContainerState extends State<addStationContainer> {
   File? image;
+  // late File image = File("assets/images");
   late String lat;
   late String long;
   String locationMessage = "";
+  String dropdownValue = 'Level-1';
 
   Future PickImage() async {
     try {
@@ -42,7 +44,7 @@ class _addStationContainerState extends State<addStationContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 430,
+      height: 600,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         color: kcolorsgrey,
@@ -110,8 +112,44 @@ class _addStationContainerState extends State<addStationContainer> {
             ),
             kVSpace16,
             const textfeldecustom(
+              
               titel: "Bank Account",
               iconData: Icons.attach_money_rounded,
+            ),
+            kVSpace16,
+            const Align(
+              alignment: Alignment.bottomLeft,
+              child: textCustom(
+                titel: "Charging Power : ",
+              ),
+            ),
+            kVSpace8,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SizedBox(
+                height: 40,
+                width: 100,
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+
+                  items: <String>['Level-1', 'Level-2', 'Level-3']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    );
+                  }).toList(),
+                  // Step 5.
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                ),
+              ),
             ),
             kVSpace16,
             // detectLocarion(),
@@ -166,7 +204,9 @@ class _addStationContainerState extends State<addStationContainer> {
                 style: TextStyle(
                     decoration: TextDecoration.underline, color: Colors.blue),
               ),
-            )
+            ),
+            kVSpace24,
+            ElecatedButtonAddStation(locationgvalue: locationMessage,ratingvalue: dropdownValue, )
           ],
         ),
       ),
@@ -194,4 +234,6 @@ class _addStationContainerState extends State<addStationContainer> {
 
     return await Geolocator.getCurrentPosition();
   }
+
+  
 }

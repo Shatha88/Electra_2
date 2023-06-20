@@ -137,6 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                   };
                   print('Im here');
                   final response = await loginAccount(body: body);
+                  print(response.statusCode);
                   if (response.statusCode == 200) {
                     box.write('token', json.decode(response.body)['token']);
                     box.write(

@@ -50,6 +50,7 @@ Future<Response> loginAccount({required Map body}) async {
   } on HttpException catch (error) {
     return Response(error.toString(), 503);
   } catch (error) {
+    print(error);
     return Response(error.toString(), 500);
   }
 }
